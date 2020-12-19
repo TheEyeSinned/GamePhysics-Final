@@ -10,6 +10,7 @@ public class CollisionManager : MonoBehaviour
     public BulletBehaviour[] spheres;
 
     private static Vector3[] faces;
+    //public RigidBody3D body;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,7 @@ public class CollisionManager : MonoBehaviour
                 {
                     CheckSphereAABB(sphere, cube);
                 }
-                
+
             }
         }
 
@@ -98,12 +99,12 @@ public class CollisionManager : MonoBehaviour
             s.collisionNormal = face;
             //s.isColliding = true;
 
-            
+
             Reflect(s);
         }
 
     }
-    
+
     // This helper function reflects the bullet when it hits an AABB face
     private static void Reflect(BulletBehaviour s)
     {
@@ -121,6 +122,19 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
+    private static void Push(CubeBehaviour a, CubeBehaviour b)
+    {
+        if (a.name == "Player")
+        {
+            RigidBody3D playerRB = a.gameObject.GetComponent<RigidBody3D>();
+            if (a.isColliding)
+            {
+                Vector3 pushVel = new Vector3(playerRB.velocity.x, 0.0f, playerRB.velocity.z) * 60f;
+                b.gameObject.GetComponent<RigidBody3D>().velocity.y = 0;
+                b.gameObject.GetComponent<RigidBody3D>().transform.position += pushVel;
+            }
+        }
+    }
 
     public static void CheckAABBs(CubeBehaviour a, CubeBehaviour b)
     {
@@ -153,7 +167,7 @@ public class CollisionManager : MonoBehaviour
                     face = faces[i];
                 }
             }
-            
+
             // set the contact properties
             contactB.face = face;
             contactB.penetration = penetration;
@@ -176,12 +190,17 @@ public class CollisionManager : MonoBehaviour
                     a.gameObject.GetComponent<RigidBody3D>().Stop();
                     a.isGrounded = true;
                 }
-                
 
+                if (contactB.face.x != 0 || contactB.face.z != 0) //check horizontal collision
+                {
+                    a.isColliding = true;
+                    a.touchContact = contactB;
+                    Push(a, b);
+                }
                 // add the new contact
                 a.contacts.Add(contactB);
-                a.isColliding = true;
-                
+                //a.isColliding = true;
+
             }
         }
         else

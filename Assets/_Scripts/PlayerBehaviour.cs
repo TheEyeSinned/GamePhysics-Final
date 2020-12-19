@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -15,11 +16,14 @@ public class PlayerBehaviour : MonoBehaviour
     [Header("Movement")]
     public float speed;
     public bool isGrounded;
-
+    public bool isColliding;
+    public Contact touchContact;
 
     public RigidBody3D body;
     public CubeBehaviour cube;
     public Camera playerCam;
+
+    public LevelLoader level;
 
     void start()
     {
@@ -29,51 +33,103 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            level.IntroScene();
+            Cursor.lockState = CursorLockMode.None;
+        }
         _Fire();
         _Move();
     }
 
     private void _Move()
     {
+
+
         if (isGrounded)
         {
+
             if (Input.GetAxisRaw("Horizontal") > 0.0f)
             {
                 // move right
-                body.velocity = playerCam.transform.right * speed * Time.deltaTime;
+                body.velocity += playerCam.transform.right * speed * Time.deltaTime;
             }
 
-            if (Input.GetAxisRaw("Horizontal") < 0.0f)
+            else if (Input.GetAxisRaw("Horizontal") < 0.0f)
             {
                 // move left
-                body.velocity = -playerCam.transform.right * speed * Time.deltaTime;
+                body.velocity += -playerCam.transform.right * speed * Time.deltaTime;
             }
 
             if (Input.GetAxisRaw("Vertical") > 0.0f)
             {
                 // move forward
-                body.velocity = playerCam.transform.forward * speed * Time.deltaTime;
+                body.velocity += playerCam.transform.forward * speed * Time.deltaTime;
             }
 
-            if (Input.GetAxisRaw("Vertical") < 0.0f) 
+            else if (Input.GetAxisRaw("Vertical") < 0.0f)
             {
                 // move Back
-                body.velocity = -playerCam.transform.forward * speed * Time.deltaTime;
+                body.velocity += -playerCam.transform.forward * speed * Time.deltaTime;
             }
 
-            body.velocity = Vector3.Lerp(body.velocity, Vector3.zero, 0.9f);
+
+
             body.velocity = new Vector3(body.velocity.x, 0.0f, body.velocity.z); // remove y
-            
 
             if (Input.GetAxisRaw("Jump") > 0.0f)
             {
-                body.velocity = transform.up * speed * 0.1f * Time.deltaTime;
+                body.velocity += body.transform.up * speed * Time.deltaTime;
             }
 
-            transform.position += body.velocity;
+            body.velocity = Vector3.Lerp(body.velocity, Vector3.zero, 0.95f);
+           
         }
+
+        if (isColliding)
+        {
+            if (touchContact.face.x < 0.0f)
+            {
+                if (body.velocity.x < 0.0f)
+                {
+                    body.velocity.x = 0.0f;
+                    
+                }
+            }
+
+            if (touchContact.face.x > 0.0f)
+            {
+                if (body.velocity.x > 0.0f)
+                {
+                    body.velocity.x = 0.0f;
+                    
+                }
+            }
+
+            if (touchContact.face.z > 0.0f)
+            {
+                if (body.velocity.z > 0.0f)
+                {
+                    body.velocity.z = 0.0f;
+                    
+                }
+            }
+
+            if (touchContact.face.z < 0.0f)
+            {
+                if (body.velocity.z < 0.0f)
+                {
+                    body.velocity.z = 0.0f;
+                    
+                }
+            }
+
+        }
+
+        transform.position += body.velocity;
     }
 
+   
 
     private void _Fire()
     {
@@ -92,6 +148,7 @@ public class PlayerBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         GroundCheck();
+        CollideCheck();  //to check for colliding
     }
 
     private void GroundCheck()
@@ -99,4 +156,17 @@ public class PlayerBehaviour : MonoBehaviour
         isGrounded = cube.isGrounded;
     }
 
+    //added to check for colliding
+    private void CollideCheck()
+    {
+        isColliding = cube.isColliding;
+        if (isColliding)
+        {
+            touchContact = cube.touchContact;
+        }
+        else
+        {
+            touchContact = null;
+        }
+    }
 }

@@ -63,6 +63,7 @@ public class CubeBehaviour : MonoBehaviour
     private MeshFilter meshFilter;
     public Bounds bounds;
     public bool isGrounded;
+    public Contact touchContact; //added jc
 
 
     // Start is called before the first frame update
@@ -79,10 +80,21 @@ public class CubeBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //_Move();
         max = Vector3.Scale(bounds.max, transform.localScale) + transform.position;
         min = Vector3.Scale(bounds.min, transform.localScale) + transform.position;
-
+       
     }
+
+    //void _Move()
+    //{
+    //    if (isColliding)
+    //    {
+    //        this.gameObject.GetComponent<RigidBody3D>().velocity.x = 0.01f;
+    //        this.gameObject.GetComponent<RigidBody3D>().velocity.y = 0.01f;
+    //        this.gameObject.GetComponent<RigidBody3D>().velocity.z = 0.01f;
+    //    }
+    //}
 
     private void OnDrawGizmos()
     {

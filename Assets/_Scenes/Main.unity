@@ -241,6 +241,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  touchContact:
+    cube: {fileID: 0}
+    face: {x: 0, y: 0, z: 0}
+    penetration: 0
 --- !u!23 &526557354
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -365,6 +369,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  touchContact:
+    cube: {fileID: 0}
+    face: {x: 0, y: 0, z: 0}
+    penetration: 0
 --- !u!114 &536637369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityScale: 1
   mass: 1
-  bodyType: 1
+  bodyType: 0
   timer: 0
   isFalling: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -441,8 +449,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536637367}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 1.996, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -9.39, y: 1.996, z: -18.06}
+  m_LocalScale: {x: 11.41, y: 1, z: 12.43}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -539,6 +547,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  touchContact:
+    cube: {fileID: 0}
+    face: {x: 0, y: 0, z: 0}
+    penetration: 0
 --- !u!114 &579480856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,9 +656,15 @@ MonoBehaviour:
   bulletManager: {fileID: 403008322}
   speed: 100
   isGrounded: 0
+  isColliding: 0
+  touchContact:
+    cube: {fileID: 0}
+    face: {x: 0, y: 0, z: 0}
+    penetration: 0
   body: {fileID: 579480856}
   cube: {fileID: 579480855}
   playerCam: {fileID: 580202292}
+  level: {fileID: 817132551}
 --- !u!4 &579711284
 Transform:
   m_ObjectHideFlags: 0
@@ -833,6 +851,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  touchContact:
+    cube: {fileID: 0}
+    face: {x: 0, y: 0, z: 0}
+    penetration: 0
 --- !u!114 &613454537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -974,6 +996,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &817132549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 817132550}
+  - component: {fileID: 817132551}
+  m_Layer: 0
+  m_Name: LevelLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &817132550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817132549}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &817132551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817132549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfe25a216d781a49ab7b83641c17c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &893925093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1144,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  touchContact:
+    cube: {fileID: 0}
+    face: {x: 0, y: 0, z: 0}
+    penetration: 0
 --- !u!114 &893925098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,6 +1209,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  touchContact:
+    cube: {fileID: 0}
+    face: {x: 0, y: 0, z: 0}
+    penetration: 0
 --- !u!114 &1031056707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,7 +1227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityScale: 1
   mass: 1
-  bodyType: 1
+  bodyType: 0
   timer: 0
   isFalling: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -1216,8 +1289,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031056705}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 3.578, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -8.79, y: 1.09, z: -8.76}
+  m_LocalScale: {x: 11.41, y: 1, z: 12.43}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -1264,6 +1337,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  touchContact:
+    cube: {fileID: 0}
+    face: {x: 0, y: 0, z: 0}
+    penetration: 0
 --- !u!114 &1052724109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1278,7 +1355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityScale: 1
   mass: 1
-  bodyType: 1
+  bodyType: 0
   timer: 0
   isFalling: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -1340,8 +1417,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052724107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 5.136, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -9.03, y: 0.1, z: 2.41}
+  m_LocalScale: {x: 11.89, y: 1, z: 16.74}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
@@ -1388,6 +1465,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  touchContact:
+    cube: {fileID: 0}
+    face: {x: 0, y: 0, z: 0}
+    penetration: 0
 --- !u!114 &1101564118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1495,14 +1576,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125924261}
-  m_LocalRotation: {x: 0.62755096, y: -0.1658023, z: 0.13912463, w: 0.74788624}
+  m_LocalRotation: {x: 0.6774354, y: -0.011488644, z: 0.010582867, w: 0.7354164}
   m_LocalPosition: {x: 0.35, y: -0.15000004, z: 0.3499999}
   m_LocalScale: {x: 0.10000001, y: 0.4, z: 0.10000001}
   m_Children:
   - {fileID: 681930396}
   m_Father: {fileID: 1193645829}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 80, y: -25, z: 0}
+  m_LocalEulerAnglesHint: {x: 85.3, y: -1.79, z: 0}
 --- !u!23 &1125924264
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1594,6 +1675,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  touchContact:
+    cube: {fileID: 0}
+    face: {x: 0, y: 0, z: 0}
+    penetration: 0
 --- !u!114 &1170046216
 MonoBehaviour:
   m_ObjectHideFlags: 0
